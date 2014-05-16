@@ -59,4 +59,13 @@ install_github(repo = "modify", username = "skranz")
     mutate.df = mutate(df, x=ifelse(a==2,x+100,x)),
     mutate.tbl = mutate(tbl, x=ifelse(a==2,x+100,x))
   )
+  
+#  Unit: milliseconds
+                             expr       min        lq    median        uq        max neval
+# modify(tbl, a == 2, x = x + 100)  51.37875  52.75087  53.43773  56.89211   65.82984     5
+#  modify(df, a == 2, x = x + 100)  62.41217  73.70730  81.48766  95.45519  104.04200     5
+#  modify(dt, a == 2, x = x + 100)  55.61156  58.30331  62.36006  65.13786   82.47056     5
+#     dt[a == 2, `:=`(x, x + 100)]  61.03452  69.32567  69.56923  74.70600   81.87845     5
+#                        mutate.df 766.40427 881.66008 887.30054 940.57168  964.20248     5
+#                       mutate.tbl 769.94984 836.24982 881.46705 883.49444 1015.74663     
 ```
