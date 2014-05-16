@@ -33,7 +33,6 @@ examples.modify = function() {
   modify(tbl, a==2,x = x+100)
   mutate(df, x=ifelse(a==2,x+100,x))
   
-  tbl
   microbenchmark(times = 5L,
     modify(tbl,a==2, x = x+100),
     modify(df,a==2, x = x+100),
@@ -44,6 +43,9 @@ examples.modify = function() {
   )
   # Substantial speed increases compared to mutate with ifelse
   # and not much slower than directly using data.table syntax
+  
+
+
 }
 
 EmptySymbol = function() (quote(f(,)))[[2]]

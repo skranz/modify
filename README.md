@@ -3,7 +3,7 @@ Modify
 
 **Author: Sebastian Kranz, Ulm University** 
 
-Description: modify is essentially just a wrapper for data.table syntax but can be used for other data containers. It is thought as an addition to dplyr functions. While the functionality can be replicated by mutate, modify can be much faster and more concise if only values for selected rows shall be modified.
+Fast modification of data.frames and data.tables by reference; `modify` is essentially just a wrapper for data.table syntax but can be used for other data containers like data frames. It is thought as an addition to dplyr functions. While the functionality can be replicated by `mutate`, `modify` can be much faster and more concise if only values for selected rows shall be modified (see benchmark example below).
 
 ## 1. Installation
 
@@ -61,11 +61,11 @@ install_github(repo = "modify", username = "skranz")
   )
   
 #  Unit: milliseconds
-                             expr       min        lq    median        uq        max neval
+#                             expr       min        lq    median        uq        max neval
 # modify(tbl, a == 2, x = x + 100)  51.37875  52.75087  53.43773  56.89211   65.82984     5
 #  modify(df, a == 2, x = x + 100)  62.41217  73.70730  81.48766  95.45519  104.04200     5
 #  modify(dt, a == 2, x = x + 100)  55.61156  58.30331  62.36006  65.13786   82.47056     5
 #     dt[a == 2, `:=`(x, x + 100)]  61.03452  69.32567  69.56923  74.70600   81.87845     5
 #                        mutate.df 766.40427 881.66008 887.30054 940.57168  964.20248     5
-#                       mutate.tbl 769.94984 836.24982 881.46705 883.49444 1015.74663     
+#                       mutate.tbl 769.94984 836.24982 881.46705 883.49444 1015.74663     5
 ```
